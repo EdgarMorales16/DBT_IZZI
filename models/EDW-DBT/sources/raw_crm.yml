@@ -1,0 +1,40 @@
+version: 2
+
+sources:
+  - name: raw_crm
+    database: replication_prd
+    schema: raw_crm
+
+    tables:
+      - name: ttc_s_org_ext
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not_null
+
+      - name: ttc_s_org_ext_x
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not_null
+
+      - name: ttc_s_indust
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not_null
+
+      - name: ttc_s_addr_per
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not_null
+
+      - name: ttc_s_order
+      - name: ttc_s_order_x
+      - name: ttc_s_order_item
+      - name: ttc_s_order_item_x
