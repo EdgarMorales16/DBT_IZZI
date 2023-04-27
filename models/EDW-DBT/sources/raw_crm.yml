@@ -38,3 +38,6 @@ sources:
       - name: ttc_s_order_x
       - name: ttc_s_order_item
       - name: ttc_s_order_item_x
+      - name: ttc_s_org_ext_xm
+      - name: ttc_s_inv_prof
+      - name: ttc_cx_tt_admision

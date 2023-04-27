@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: raw_brm
+    database: replication_prd
+    schema: raw_brm
+
+    tables:
+      - name: ttc_product_t 
+      - name: ttc_collections_scenario_t
+      - name: ttc_account_t
+
