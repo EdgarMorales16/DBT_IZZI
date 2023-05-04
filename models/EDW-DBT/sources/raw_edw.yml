@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: raw_edw
+    database: replication_prd
+    schema: raw_edw
+
+    tables:
+      - name: ttc_dim_empleados             
+      - name: ttc_dim_region    
+      - name: ttc_dim_empleados_historico
+      - name: ttc_dim_vendedores
+      - name: ttc_dim_productos
+      - name: ttc_ctl_hub_dir
+      - name: ttc_dim_region_operativa
+      - name: ttc_cat_domiciliacion_clientes
+      - name: ttc_mt_clientes_crm_jemv
+      - name: ttc_mt_clientes_historico_jemv
+      - name: ttc_mt_clientes_jemv
+
+        
