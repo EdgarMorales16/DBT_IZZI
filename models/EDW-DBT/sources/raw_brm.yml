@@ -9,4 +9,8 @@ sources:
       - name: ttc_product_t 
       - name: ttc_collections_scenario_t
       - name: ttc_account_t
+      - name: ttc_payinfo_t
+      - name: ttc_payinfo_cc_t
+      - name: ttc_billinfo_t
+      
 

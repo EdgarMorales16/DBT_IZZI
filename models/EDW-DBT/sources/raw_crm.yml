@@ -7,37 +7,17 @@ sources:
 
     tables:
       - name: ttc_s_org_ext
-        columns:
-          - name: row_id
-            tests:
-              - unique
-              - not_null
-
       - name: ttc_s_org_ext_x
-        columns:
-          - name: row_id
-            tests:
-              - unique
-              - not_null
-
+      - name: ttc_s_org_ext_xm
       - name: ttc_s_indust
-        columns:
-          - name: row_id
-            tests:
-              - unique
-              - not_null
-
       - name: ttc_s_addr_per
-        columns:
-          - name: row_id
-            tests:
-              - unique
-              - not_null
-
+      - name: ttc_s_con_addr
       - name: ttc_s_order
       - name: ttc_s_order_x
-      - name: ttc_s_order_item
+      - name: ttc_s_order_item 
       - name: ttc_s_order_item_x
-      - name: ttc_s_org_ext_xm
       - name: ttc_s_inv_prof
+      - name: ttc_s_pri_lst
+      - name: ttc_s_lst_of_val
       - name: ttc_cx_tt_admision
+      - name: ttc_cx_bz_cls_sgt

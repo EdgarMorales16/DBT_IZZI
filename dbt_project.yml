@@ -37,10 +37,20 @@ models:
   dbt_bia:
     # Applies to all files under models/example/
     EDW-DBT:
+      bm:
+        entidad_clientes:
+            historico:
+              +materialized: view  
+              +schema: RAW_EDW
+
       stage:
         brm:
           +materialized: view  
           +schema: RAW_BRM
+      
+      stg_bm:
+        +materialized: view  
+        +schema: RAW_EDW
 
 
 vars:
