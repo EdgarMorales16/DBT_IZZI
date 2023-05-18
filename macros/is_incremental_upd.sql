@@ -1,7 +1,7 @@
 {% macro is_incremental_upd (table_name, column_name ) -%}
     
     select delta.* 
-    from {{table_name}} delta,
+    from {{table_name}} delta, 
     {{ this }} historico 
     where 1 = 1 
     and (delta. {{column_name}} = historico. {{column_name}} 

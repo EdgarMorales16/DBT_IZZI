@@ -39,8 +39,7 @@ models:
     EDW-DBT:
       bm:
         entidad_clientes:
-            historico:
-              +materialized: view  
+            historico:  
               +schema: RAW_EDW
 
       stage:

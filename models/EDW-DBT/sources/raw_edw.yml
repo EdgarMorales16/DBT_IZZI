@@ -17,5 +17,6 @@ sources:
       - name: ttc_mt_clientes_crm_jemv
       - name: ttc_mt_clientes_historico_jemv
       - name: ttc_mt_clientes_jemv
+      - name: stg_ttc_mt_clientes_crm
 
         
