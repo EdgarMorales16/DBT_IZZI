@@ -21,3 +21,4 @@ sources:
       - name: ttc_s_lst_of_val
       - name: ttc_cx_tt_admision
       - name: ttc_cx_bz_cls_sgt
+      - name: ttc_s_prod_int
