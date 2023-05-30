@@ -13,9 +13,10 @@ sha2(
                             'DW_CREADO_POR',
                             'DW_FECHA_ACTUALIZACION',
                             'DW_ACTUALIZADO_POR',
-                            'DWJOB_ID'
+                            'DWJOB_ID',
+                            'WIDMT_CLIENTE_UPD'
                             ) -%}
-            {{ column }}
+            NVL( {{ column }}, '' )
             {%- if not loop.last -%}
                 ||
             {%- endif %}

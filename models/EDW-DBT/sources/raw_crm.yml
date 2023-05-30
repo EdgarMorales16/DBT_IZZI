@@ -22,3 +22,4 @@ sources:
       - name: ttc_cx_tt_admision
       - name: ttc_cx_bz_cls_sgt
       - name: ttc_s_prod_int
+      - name: ttc_s_prod_int_x
