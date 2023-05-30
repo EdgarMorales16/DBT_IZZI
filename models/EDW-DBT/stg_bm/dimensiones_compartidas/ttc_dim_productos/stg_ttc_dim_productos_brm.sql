@@ -10,10 +10,10 @@ with
 
     {# bloque 2: CTE filtros#}
     {# bloque 3: CTE Tranformaciones#}
-    ttc_dim_productos_crm as (
+    ttc_dim_productos_brm as (
     select 
-        s_prod_int.widdim_producto,
-        3 orig_id,
+        '5'||s_prod_int.widdim_producto widdim_producto,
+        5 orig_id,
         s_prod_int.row_id,
         s_prod_int.name producto,
         nvl(s_prod_int.sub_type_cd,'SIN NIVEL') nivel,
@@ -183,7 +183,7 @@ with
     ),
 
     {# bloque 4: CTE Final#}
-    final as (select * from ttc_dim_productos_crm)
+    final as (select * from ttc_dim_productos_brm)
 
 select {{ dw_control_columns() }},
        *

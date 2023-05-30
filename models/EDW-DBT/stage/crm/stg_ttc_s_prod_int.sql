@@ -99,7 +99,7 @@ select
     book_appr_id,
     build,
     cary_cost_curcy_cd,
-    category_cd,
+    {{ fnc_translate('category_cd') }} category_cd,
     cfg_model_id,
     cg_pr_ctlg_cat_id,
     class_partnum_id,
