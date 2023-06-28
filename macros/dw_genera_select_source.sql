@@ -1,17 +1,17 @@
-select {{ carga_historico_2('stg_ttc_mt_clientes_salesforce','stg_ttc_mt_clientes_crm') }}
-from {{ source('raw_edw', 'stg_ttc_mt_clientes_crm') }}
-
-
-{%- macro prueba_genera_source (
+{%- macro genera_source_stmt (
     source_name, 
     table_name,
     v_fnc_date,
-    v_fnc_translate
+    v_fnc_translate,
+    v_wid="false",
+    v_wid_orig="",
+    v_wid_row_name="",
+    v_wid_alias=""
  ) -%}
 
-{%- set lista = v_fnc_date | select ("in", v_fnc_translate, ) -%}
+{%- set lista_repedida = v_fnc_date | select ("in", v_fnc_translate, ) -%}
 
-{%- if lista | list | length() != 0 -%}
+{%- if lista_repedida | list | length() != 0 -%}
 {{ raise_exception("No se puede utilizar el mismo campo para aplicar dos funciones diferentes.") }}
 {%- endif -%}
 
@@ -31,20 +31,29 @@ from {{ source('raw_edw', 'stg_ttc_mt_clientes_crm') }}
 
 with 
 source_model as (select * from {{ source(source_name, table_name) }}),
+
 model_columns as (
 select 
-{% for column in column_names -%} 
-{{val_column(column, v_fnc_date, v_fnc_translate)}}{% if not loop.last %},{% endif %} 
+{% if v_wid == "true" -%}
+{% if v_wid_orig | length() != 0 and v_wid_row_name | length() != 0 and v_wid_alias | length() != 0-%}
+{{fnc_wid ( v_wid_orig, v_wid_row_name )}} as {{ v_wid_alias }},
+{% else %}
+{{ raise_exception("Si el parametro v_wid es 'true', se requieren los parametros v_wid_orig, v_wid_row_name y v_wid_alias para poder construir la llave ") }}
+{% endif -%}
+{% endif -%}
+{% for column in column_names -%} {{val_column(column, v_fnc_date, v_fnc_translate)}}{% if not loop.last %},{% endif %} 
 {% endfor -%} 
 from source_model)
 
 select * from model_columns
-{%- endset -%}
+{% endset -%}
 
 {{return(result)}}
 
-
 {%- endmacro -%}
+
+
+
 
 {%- macro val_column (
     column,
@@ -63,7 +72,8 @@ select * from model_columns
 {%- set column_name = column.column | lower -%}
 
 {%- if column.column | lower in v_fnc_date | list -%}
-{{fnc_date ( column_name )}} as {{ column_name }}
+{{fnc_date ( column_name )}} as {{ column_name }},
+{{ column_name }} as {{ column_name }}_raw
 {%- elif column.column | lower in v_fnc_translate | list -%}
 {{fnc_translate ( column_name )}} as {{ column_name }}
 {%- else -%}
@@ -72,10 +82,11 @@ select * from model_columns
 
 {% endmacro %}
 
+
+
+
 {%- macro raise_exception(mensaje) -%}
 
 {{ exceptions.raise_compiler_error(mensaje) }}
     
 {%- endmacro -%}
-
-{{prueba_genera_source(source_name="raw_crm",table_name="ttc_s_order_type",v_fnc_date=["created", "last_upd"], v_fnc_translate=["order_cat_cd","name"])}}

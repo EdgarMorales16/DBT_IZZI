@@ -3,7 +3,7 @@
     {%- if var('var_from_date', false) -%}
         '{{ var('var_from_date') }}'
     {%- else -%}
-        current_date() -10
+        current_date() -1
     {%- endif -%}
 
 {%- endmacro %}

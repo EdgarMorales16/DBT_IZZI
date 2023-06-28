@@ -1,10 +1,11 @@
-{#
 {{
     config(
-        materialized="table"
+        alias='stg_ttc_univ_clientes_telco_crm',
+        tags=["clientes"],
+        materialized="table",
+        reproceso = 'Y'
     )
 }}
-#}
 
 with    
     {# bloque 1: CTE tablas#} 
@@ -35,9 +36,11 @@ with
         from ttc_s_org_ext
         where
             1 = 1
-            and (
-                ( created::date between '2023-03-23' and '2023-03-23' )
-                or ( last_upd_gg::date between '2023-03-23' and '2023-03-23' )
+            and ( 
+                ( created::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
+                or ( last_upd_gg::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                           and {{ fnc_var_to_date(var("var_to_date")) }} )
             )
     ),
     u_portabilidad as (
@@ -53,8 +56,10 @@ with
         and upper(soi.X_CARRIER) <> 'IZZI'
         and soix.X_TELEPHONE_NUMBER IS NOT NULL
         and ( 
-            ( so.created::date between '2023-03-23' and '2023-03-23' )
-            or ( so.last_upd_gg::date between '2023-03-23' and '2023-03-23' )
+            ( so.created::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }}  )
+            or ( so.last_upd_gg::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }}  )
         )
     ),
     u_s_org_ext_x as 
@@ -64,8 +69,10 @@ with
         where
             1 = 1
             and (
-                ( created::date between '2023-03-23' and '2023-03-23' )
-                or ( last_upd_gg::date between '2023-03-23' and '2023-03-23' )
+                ( created::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
+                or ( last_upd_gg::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
             )
     ),
     u_s_org_ext_xm as 
@@ -75,8 +82,10 @@ with
         where
             1 = 1
             and (
-                ( created::date between '2023-03-23' and '2023-03-23' )
-                or ( last_upd_gg::date between '2023-03-23' and '2023-03-23' )
+                ( created::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
+                or ( last_upd_gg::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
             )
     ),
     u_s_addr_per as (
@@ -86,8 +95,10 @@ with
         where
             1 = 1
             and (
-                ( ad.created::date between '2023-03-23' and '2023-03-23' )
-                or ( ad.last_upd_gg::date between '2023-03-23' and '2023-03-23' )
+                ( ad.created::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
+                or ( ad.last_upd_gg::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
             )
     ),
     u_s_indust as (
@@ -97,8 +108,10 @@ with
         where
             1 = 1
             and (
-                ( ind.created::date between '2023-03-23' and '2023-03-23' )
-                or ( ind.last_upd_gg::date between '2023-03-23' and '2023-03-23' )
+                ( ind.created::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
+                or ( ind.last_upd_gg::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
             )
     ),
     u_s_inv_prof as (
@@ -107,8 +120,10 @@ with
         where
             1 = 1
             and (
-                ( sip.created::date between '2023-03-23' and '2023-03-23' )
-                or ( sip.last_upd_gg::date between '2023-03-23' and '2023-03-23' )
+                ( sip.created::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
+                or ( sip.last_upd_gg::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
             )
     ),
     u_cx_tt_admision as (
@@ -118,8 +133,10 @@ with
         where
             1 = 1
             and (
-                ( cx.created::date between '2023-03-23' and '2023-03-23' )
-                or ( cx.last_upd_gg::date between '2023-03-23' and '2023-03-23' )
+                ( cx.created::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
+                or ( cx.last_upd_gg::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
             )
     ),
     u_cx_tt_admision as (
@@ -129,8 +146,10 @@ with
         where
             1 = 1
             and (
-                ( cx.created::date between '2023-03-23' and '2023-03-23' )
-                or ( cx.last_upd_gg::date between '2023-03-23' and '2023-03-23' )
+                ( cx.created::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
+                or ( cx.last_upd_gg::date between {{ fnc_var_from_date(var("var_from_date")) }} 
+                                    and {{ fnc_var_to_date(var("var_to_date")) }} )
             )
     ),
     u_collections_scenario_t as (
@@ -226,5 +245,6 @@ with
     {# bloque 4: CTE Final#}
     final as (select * from univ_s_clientes)
 
-select *
+select reproceso,
+       *
 from final

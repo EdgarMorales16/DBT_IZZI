@@ -1,15 +1,12 @@
 {{
     config(
         alias='ttc_mt_clientes_jemv',
-        tags=["clientes"],
         materialized="incremental",
         incremental_strategy="merge",
         unique_key= "widmt_cliente",
         hash_key_upd= "widmt_cliente_upd",
-        hash_key_upd2= "widmt_cliente_upd"
     ) 
 }}
-
 
 with
     {# bloque 1: CTE Objetos#}
@@ -30,8 +27,8 @@ with
     {# bloque 3: carga incremental#}
     final as 
     ( 
-        select *
-        from ttc_mt_clientes
+      select *
+      from ttc_mt_clientes
     )
 
 select *

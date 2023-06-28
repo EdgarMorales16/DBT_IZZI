@@ -55,3 +55,4 @@ models:
 vars:
   var_from_date:
   var_to_date:
+  var_rework:

@@ -1,0 +1,22 @@
+select
+    poid_db,
+    poid_id0,
+    poid_type,
+    poid_rev,
+    created_t,
+    mod_t,
+    read_access,
+    write_access,
+    account_obj_db,
+    account_obj_id0,
+    account_obj_type,
+    account_obj_rev,
+    name,
+    service_obj_db,
+    service_obj_id0,
+    service_obj_type,
+    service_obj_rev,
+    effective_t,
+    object_cache_type,
+    last_upd_gg
+from {{ source("raw_brm", "ttc_profile_t") }}

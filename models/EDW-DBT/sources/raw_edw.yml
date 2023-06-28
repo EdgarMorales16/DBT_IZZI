@@ -18,7 +18,9 @@ sources:
       - name: ttc_mt_clientes_historico_jemv
       - name: ttc_mt_clientes_jemv
       - name: stg_ttc_mt_clientes_crm
+      - name: stg_ttc_mt_clientes_brm
       - name: stg_ttc_dim_productos_crm
       - name: stg_ttc_dim_productos_brm
-
+      - name: stg_ttc_mt_clientes_salesforce
+      - name: stg_ttc_mt_clientes
         

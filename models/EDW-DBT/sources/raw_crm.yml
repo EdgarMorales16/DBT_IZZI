@@ -7,19 +7,134 @@ sources:
 
     tables:
       - name: ttc_s_org_ext
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null 
+
       - name: ttc_s_org_ext_x
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null 
+
       - name: ttc_s_org_ext_xm
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null 
+
       - name: ttc_s_indust
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null 
+
       - name: ttc_s_addr_per
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null 
+      
       - name: ttc_s_con_addr
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
       - name: ttc_s_order
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
       - name: ttc_s_order_x
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
       - name: ttc_s_order_item 
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
       - name: ttc_s_order_item_x
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
       - name: ttc_s_inv_prof
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
       - name: ttc_s_pri_lst
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
       - name: ttc_s_lst_of_val
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
       - name: ttc_cx_tt_admision
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
       - name: ttc_cx_bz_cls_sgt
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
       - name: ttc_s_prod_int
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
       - name: ttc_s_prod_int_x
+        columns:
+          - name: row_id
+            tests:
+              - unique
+              - not null
+
+      - name: salesforce_account
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not null
+
+      - name: salesforce_asset
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not null

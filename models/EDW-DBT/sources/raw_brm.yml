@@ -6,11 +6,46 @@ sources:
     schema: raw_brm
 
     tables:
-      - name: ttc_product_t 
-      - name: ttc_collections_scenario_t
       - name: ttc_account_t
-      - name: ttc_payinfo_t
-      - name: ttc_payinfo_cc_t
+        columns:
+            - name: poid_id0
+              tests: 
+                - unique
+                - not null
+      - name: ttc_account_nameinfo_t
+      - name: ttc_account_phones_t
+      - name: ttc_profile_t 
+        columns:
+            - name: poid_id0
+              tests: 
+                - unique
+                - not null
       - name: ttc_billinfo_t
+        columns:
+            - name: poid_id0
+              tests: 
+                - unique
+                - not null
+      - name: ttc_collections_scenario_t
+        columns:
+            - name: poid_id0
+              tests: 
+                - unique
+                - not null
+      - name: ttc_product_t 
+        columns:
+            - name: poid_id0
+              tests: 
+                - unique
+                - not null
+      - name: ttc_payinfo_t
+        columns:
+            - name: poid_id0
+              tests: 
+                - unique
+                - not null
+      - name: ttc_payinfo_cc_t
+      - name: ttc_cv_profile_account_t
+      
       
 

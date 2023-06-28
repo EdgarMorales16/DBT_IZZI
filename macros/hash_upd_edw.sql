@@ -6,23 +6,21 @@
 {% set column_names = columns | map(attribute='name') %}
 
 {% set base_model_sql %}
-sha2( 
     {%- for column in column_names %} 
-        {%- if column not in (
+        {%- if column not in ( 
                             'DW_FECHA_CREACION', 
-                            'DW_CREADO_POR',
-                            'DW_FECHA_ACTUALIZACION',
-                            'DW_ACTUALIZADO_POR',
+                            'DW_CREADO_POR', 
+                            'DW_FECHA_ACTUALIZACION', 
+                            'DW_ACTUALIZADO_POR', 
                             'DWJOB_ID',
                             'WIDMT_CLIENTE_UPD'
                             ) -%}
-            NVL( {{ column }}, '' )
+            {{ column }}
             {%- if not loop.last -%}
-                ||
+                ,
             {%- endif %}
         {% endif %}
     {%- endfor -%}
-)
 {% endset %}
 
 {% if execute %}
@@ -30,7 +28,12 @@ sha2(
 {{ log(base_model_sql, info=True) }}
 {% do return(base_model_sql) %}
 
+
+
 {% endif %}
+
+
+
 {% endmacro %}
 
        
